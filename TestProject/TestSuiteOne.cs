@@ -19,10 +19,10 @@ public class TestSuiteOne
                     .ExportIntervalMilliseconds = 5)
             .Build();
 
-        var class1 = new ClassLibrary.MyLibraryComponent();
+        var myComponent = new ClassLibrary.MyLibraryComponent("CPU", "MHz");
         for (var i = 0; i < 10000; i++)
         {
-            class1.MethodThatEmitsMetrics("CPU", "MHz");
+            myComponent.MethodThatEmitsMetrics();
         }
 
         Assert.All(metricsRead.ToList(), x => Assert.Equal("MHz", x.Unit));

@@ -10,14 +10,16 @@ public sealed class MyLibraryComponent
     private static readonly Meter MyMeter =
         new(MeterName);
 
-    public void MethodThatEmitsMetrics(
-        string counterName,
-        string units)
-    {
-        var counter = MyMeter.CreateCounter<int>(
-            counterName,
-            unit: units);
+    private readonly Counter<int> _counter;
 
-        counter.Add(1);
+    public MyLibraryComponent(string counterName, string units)
+    {
+        _counter = MyMeter.CreateCounter<int>(counterName, unit: units);
+    }
+
+    public void MethodThatEmitsMetrics()
+    {
+        // Pretend that we're doing something very important here...
+        _counter.Add(1);
     }
 }

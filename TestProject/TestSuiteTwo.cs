@@ -19,10 +19,10 @@ public class TestSuiteTwo
                     .ExportIntervalMilliseconds = 5)
             .Build();
 
-        var class1 = new ClassLibrary.MyLibraryComponent();
+        var myComponent = new ClassLibrary.MyLibraryComponent("RAM", "GiB");
         for (var i = 0; i < 10000; i++)
         {
-            class1.MethodThatEmitsMetrics("RAM", "GiB");
+            myComponent.MethodThatEmitsMetrics();
         }
 
         Assert.All(metricsRead.ToList(), x => Assert.Equal("GiB", x.Unit));
