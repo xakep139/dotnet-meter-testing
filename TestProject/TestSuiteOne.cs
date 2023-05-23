@@ -12,7 +12,7 @@ public class TestSuiteOne
     public void TestProcessorMetrics()
     {
         var metricsRead = new List<Metric>();
-        using var mneterProvider = Sdk.CreateMeterProviderBuilder()
+        using var meterProvider = Sdk.CreateMeterProviderBuilder()
             .AddMeter(ClassLibrary.MyLibraryComponent.MeterName)
             .AddInMemoryExporter(metricsRead, x =>
                 x.PeriodicExportingMetricReaderOptions
